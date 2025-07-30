@@ -1,0 +1,476 @@
+@use "base" as *;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+
+body {
+  padding: 24px $layout-padding;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+.title-section {
+  margin-bottom: 24px;
+  span {
+    @include textUppercase($text-size-1);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  &__navigation {
+    //width: 50%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    a {
+      @include navLink;
+    }
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+      .lang-number-box {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        #phoneNumber {
+          margin-left: 24px;
+        }
+      }
+
+      #langBtn {
+        background-color: #fff;
+        border: none;
+      }
+
+      #langList {
+        display: none;
+        list-style: none;
+        margin:0;
+        padding:0;
+        position: absolute;
+        background: white;
+        z-index: 10;
+      }
+  }
+
+  &__contacts {
+    margin-left: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(100px, 1fr));
+    gap: 4px;
+  }
+}
+
+#slider {
+  margin-top: 88px;
+}
+
+.swiper {
+  position: relative;
+  padding-bottom: 80px;
+}
+
+.swiper-control {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+
+  .swiper-control--btns {
+    display: flex;
+    justify-content: space-between;
+  }
+
+}
+
+.swiper-horizontal>.swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+  z-index: 51;
+  left: 0;
+  bottom: 24px;
+  height: 2px;
+  width: 90%;
+}
+
+.swiper-scrollbar {
+  background: rgba(0, 0, 0, 0.1);
+  height: 2px;
+}
+
+.swiper-scrollbar-drag {
+  background: black;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  position: relative; // Убираем абсолютное позиционирование
+  left: auto; // Сбрасываем Swiper-стили
+  right: auto; // Сбрасываем Swiper-стили
+  top: auto; //
+  color: rgba(0, 122, 255, 0); /* Цвет стрелок */
+  width: 40px;
+  height: 40px;
+  user-select: none;
+  @include customButtonWhite();
+  img {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+  }
+}
+
+.swiper-button-next {
+  margin-left: 8px;
+}
+
+//Слайдер
+#slider {
+  .swiper-slide {
+    width: 418px;
+    height: 598px;
+    background-color: $gray-light;
+    border-radius: 24px;
+    padding: 16px 16px 16px 16px;
+
+    .image-swiper-slide {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 258px;
+      width: 370px;
+      border-radius: 8px;
+      background-color: #fff;
+
+      .label-tovar {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .label-discount {
+        @include labelDiscount ;
+      }
+
+      .label-new {
+        @include labelNew;
+      }
+
+      img {
+        height: 210px;
+        width: 338px;
+      }
+    }
+
+    .content-swiper-slide {
+      margin-top: 24px;
+
+      .title-tovar-card {
+        @include textUppercase($text-size-3);
+        margin-bottom: 16px;
+        line-height: 140%;
+      }
+
+      .tovar-info {
+        p {
+          margin-top: 8px;
+          @include colorText( $text-size-4, $gray-text);
+
+          span {
+            color: black;
+          }
+        }
+      }
+
+      .price-tovar-box {
+        margin-top: 24px;
+        margin-bottom: 24px;
+
+        .price-tovar {
+          font-size: 20px;
+          line-height: 22px;
+        }
+
+        .old-price-tovar {
+          margin-left: 8px;
+          @include colorText(16px, $gray-text);
+          text-decoration: line-through;
+        }
+      }
+    }
+
+    .btn-tovar--link {
+      width: 100%;
+      text-decoration: none;
+      color: white;
+      @include customButtonGreen;
+    }
+
+  }
+}
+
+@media (max-width: 1024px) {
+  .swiper-slide {
+    width: 300px;
+  }
+
+}
+
+
+// Каталог
+
+#catalog {
+  margin-top: 96px;
+  display: flex;
+  justify-content: space-between;
+
+  .accordion-container {
+    width: 75%;
+  }
+
+  .accordion {
+    overflow: hidden;
+    position: relative;
+    border-bottom: 1px solid $gray-border-color;
+  }
+
+  .accordion__intro {
+    cursor: pointer;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 0;
+    align-items: center;
+
+  }
+
+  .accordion__content {
+    max-height: 0;
+    padding-left: 50px;
+    will-change: max-height;
+    -webkit-transition: all 0.5s ease-out;
+    transition: all 0.5s ease-out;
+    opacity: 0;
+    position: relative;
+    line-height: 140%;
+
+    p {
+      @include colorText(16px, $gray-text);
+      width: 50%;
+      line-height: 22px;
+      margin-bottom: 16px;
+    }
+
+    a {
+      @include colorText(16px, $green);
+      width: 50%;
+      text-decoration: none;
+      line-height: 22px;
+    }
+  }
+
+  .accordion.accordion__active .accordion__content {
+    opacity: 1;
+    margin-bottom: 48px;
+  }
+  //.accordion:last-of-type {
+  //  border-bottom: none;
+  //}
+  .accordion:first-of-type {
+    border-top: none;
+  }
+
+  .accordion__intro-btn {
+    margin-left: auto;
+    border: 1px solid $gray-border-color;
+    border-radius: 8px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    background-color: #fff;
+    color: #299F5A;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+
+
+    &.acc_icon_active {
+      background-color: #299F5A;
+      color: #fff;
+      border-color: #299F5A;
+
+      .arrow-icon {
+        transform: rotate(180deg);
+      }
+    }
+
+    .arrow-icon {
+      width: 12px;
+      height: 16px;
+      transition: transform 0.3s;
+    }
+
+  }
+
+  .accordion.accordion__active {
+    -webkit-transition: background 0.3s;
+    transition: background 0.3s;
+  }
+
+
+  .id-services {
+    font-size: 16px;
+  }
+
+  .name-services {
+    @include textUppercase(20px);
+    width: 60%;
+  }
+
+  .count-tovar {
+    @include colorText($text-size-4, $gray-text);
+  }
+
+  .all {
+    @include customButtonGreen();
+    border: none;
+    margin-top: 20px;
+  }
+}
+
+//Информационный блок
+#info-block {
+  margin-top: 96px;
+
+  .tabs-block {
+    border: solid 1px $gray-border-color;
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  ul.tabs {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+  }
+
+  ul.tabs li {
+    padding: 30px 0;
+    margin-right: 40px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    user-select: none;
+  }
+
+  ul.tabs li.current {
+    border-bottom: 2px solid $green;
+  }
+
+  .tab-content {
+    display: none;
+    width: 80%;
+  }
+
+  .tab-content.current {
+    display: block;
+  }
+
+  .title-info {
+    @include textUppercase(18px);
+    line-height: 22px;
+    margin-top: 36px;
+    margin-bottom: 16px;
+  }
+
+  .gray-text {
+    @include colorText(16px, $gray-text);
+    line-height: 22px;
+  }
+
+  .label-required::before {
+    content: "* ";
+    color: black;
+    font-weight: bold;
+  }
+
+  .list-info {
+    margin: 0;
+    padding-left: 20px;
+
+    li {
+      margin-top: 12px;
+      @include colorText(16px, $gray-text);
+      &::marker {
+        color: $green;
+      }
+    }
+  }
+
+  table {
+    margin-top: 32px;
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+      td {
+        border-top: 1px solid $gray-border-color;
+        border-bottom: 1px solid $gray-border-color;
+        padding: 16px 0;
+
+        &:first-child {
+          @include colorText(16px, $gray-text);
+        }
+      }
+    }
+
+
+  }
+  ///* Стили для input */
+  //.input-field {
+  //  display: block;
+  //  margin-bottom: 15px;
+  //  padding: 8px 10px;
+  //  border: 1px solid #ccc;
+  //  border-radius: 4px;
+  //  width: 300px;
+  //  transition: border-color 0.3s;
+  //}
+  //.input-field.filled {
+  //  border-color: #299F5A;
+  //  background-color: #e6f4ea;
+  //}
+}

@@ -1,0 +1,85 @@
+//Colors Повторяющиеся цвета
+$green: #299F5A;
+$gray-light: #FBF9F9;
+$gray: #F4F4F4;
+$gray-dark: #262626AB;
+$gray-text: #959595;
+$gray-border-color: #E6E6E6;
+$gray-border-color-btn: #D9D9D9;
+$yellow-label: #FFD500;
+$blue-label: #34AADF;
+$red-error: #C72D2D;
+
+//Отступы
+$layout-padding: 88px;
+
+// Текст
+$big-title-size: 28px;
+$text-size-1: 24px;
+$text-size-2: 22px;
+$text-size-3: 18px;
+$text-size-4: 16px;
+
+@font-face {
+  font-family: 'Inter';
+  src: url('fonts/Inter-Italic-VariableFont_opsz,wght.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+// Общие стили
+
+@mixin navLink {
+  padding: 13px 24px;
+  border: solid 1px $gray-border-color;
+  border-radius: 50px;
+  text-decoration: none;
+  color: black;
+}
+
+@mixin textUppercase ($size:$text-size-1) {
+  font-size:$size;
+  text-transform: uppercase;
+  color: black;
+}
+
+@mixin colorText ($size:$text-size-4, $color: black) {
+  font-size:$size;
+  color:$color;
+}
+
+@mixin labelDiscount {
+  padding: 8px 16px;
+  background-color: $yellow-label;
+  color: black;
+  border-radius: 8px;
+}
+
+@mixin labelNew {
+  padding: 8px 16px;
+  background-color: $blue-label;
+  color: white;
+  border-radius: 8px;
+}
+
+@mixin customButtonGreen ($radius: 8px){
+  display: inline-block;
+  width: 100%;
+  padding: 17px 0;
+  border-radius: $radius;
+  color: white;
+  background-color: $green;
+  text-align: center;
+}
+
+@mixin customButtonWhite ($radius: 8px){
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: $radius;
+  border: 1px solid $gray-border-color-btn;
+  background-color: rgba(255, 255, 255, 0);
+}
