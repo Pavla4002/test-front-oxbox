@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="scss/swiper-bundle.min.css">
+    <link rel="stylesheet" href="scss/libs.min.css">
     <link rel="stylesheet" href="scss/styles.css">
+
 </head>
-<body>
+<body class="wrapper" >
 
 <header class="header">
     <div class="header__navigation">
@@ -32,10 +34,38 @@
         <div class="header__contacts">
             <button>telega</button>
             <button>vk</button>
-            <button>zayavka</button>
+            <button class="modal-open-btn">zayavka</button>
         </div>
     </div>
 </header>
+<div class="modal">
+    <div id="modal-form">
+        <p class="title-form">Заказать программу</p>
+        <p class="small-text-form">Оставьте заявку и мы свяжемся с вами
+            в ближайшее время!</p>
+        <form data-controller="Form" action="/submit" method="post" enctype="multipart/form-data">
+            <div class="input-wrapper empty">
+                <input type="text" id="name" name="name" class="input" required>
+                <label for="name" class="input__placeholder">Имя</label>
+            </div>
+            <div class="input-wrapper empty">
+                <input type="email" id="email" name="email" class="input" required>
+                <label for="email" class="input__placeholder">Email</label>
+            </div>
+            <div class="input-wrapper empty">
+                <input type="tel" id="phone" name="phone" class="input" required>
+                <label for="phone" class="input__placeholder">Номер телефона</label>
+            </div>
+            <div class="input-wrapper empty">
+                <textarea id="message" name="message" class="textarea" required></textarea>
+                <label for="message" class="input__placeholder">Комментарий</label>
+            </div>
+            <input type="hidden" name="action" value="submit_form">
+            <button type="submit">Отправить</button>
+        </form>
+    </div>
+</div>
+
 <section id="slider">
     <div class="title-section">
         <span>Станки в наличии</span>
@@ -326,10 +356,9 @@
     </div>
 </section>
 
-<script src="js/libs.min.css"></script>
 <script src="js/jquery-3.7.1.min.js"></script>
-<script src="js/jquery.mask.min.js"></script>
 <script src="js/jquery.validate.min.js"></script>
+<script src="js/jquery.mask.min.js"></script>
 <script src="js/swiper-bundle.min.js"></script>
 <script src="js/main.js"></script>
 </body>
