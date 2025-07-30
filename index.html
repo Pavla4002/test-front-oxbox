@@ -32,9 +32,16 @@
             <span id="phoneNumber">+7 (499) 553-02-90</span>
         </div>
         <div class="header__contacts">
-            <button>telega</button>
-            <button>vk</button>
-            <button class="modal-open-btn">zayavka</button>
+            <button class="circle-btn">
+                <img src="images/telegram.png" alt="">
+            </button>
+            <button class="circle-btn">
+                <img src="images/vk.png" alt="">
+            </button>
+            <button class="modal-open-btn">
+                <span>Оставить заявку</span>
+<!--                <img src="images/zayavka.png" alt="">-->
+            </button>
         </div>
     </div>
 </header>
@@ -57,11 +64,25 @@
                 <label for="phone" class="input__placeholder">Номер телефона</label>
             </div>
             <div class="input-wrapper empty">
+                <input type="text" id="company" name="company" class="input" required>
+                <label for="company" class="input__placeholder">Компания</label>
+            </div>
+            <div class="input-wrapper empty">
                 <textarea id="message" name="message" class="textarea" required></textarea>
                 <label for="message" class="input__placeholder">Комментарий</label>
             </div>
-            <input type="hidden" name="action" value="submit_form">
-            <button type="submit">Отправить</button>
+
+            <button type="submit" class="btn-form">Отправить</button>
+
+            <div class="checkbox-container required">
+                <input type="checkbox" id="agreement" name="agreement" required>
+                <span class="checkmark">
+                  <svg viewBox="0 0 16 16" fill="#fff">
+                    <path d="M2 8.5l4 4L14 4"/>
+                  </svg>
+                </span>
+                <label for="agreement">Я согласен с <a href="#">условиями</a></label>
+            </div>
         </form>
     </div>
 </div>
@@ -105,11 +126,64 @@
                     <img src="images/tovar1.png" alt="">
                 </div>
                 <div class="content-swiper-slide">
-
+                    <p class="title-tovar-card">Горизонтальные обрабатывающие
+                        центры KMT KH
+                    </p>
+                    <div class="tovar-info">
+                        <p>Ø обработки: <span>300 - 800 мм</span></p>
+                        <p>Мощность: <span>5,5 - 30 кВт</span></p>
+                        <p>РМЦ: <span>500 - 4000 мм</span></p>
+                        <p>Вес: <span>1000 - 5300 кг</span></p>
+                    </div>
+                    <div class="price-tovar-box">
+                        <span class="price-tovar">4 490 253 ₽</span>
+                        <span class="old-price-tovar">4 890 253 ₽</span>
+                    </div>
                 </div>
+                <a href="#" class="btn-tovar--link">Оставить заявку</a>
             </div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
+            <div class="swiper-slide">
+                <div class="image-swiper-slide">
+                    <img src="images/tovar1.png" alt="">
+                </div>
+                <div class="content-swiper-slide">
+                    <p class="title-tovar-card">Горизонтальные обрабатывающие
+                        центры KMT KH
+                    </p>
+                    <div class="tovar-info">
+                        <p>Ø обработки: <span>300 - 800 мм</span></p>
+                        <p>Мощность: <span>5,5 - 30 кВт</span></p>
+                        <p>РМЦ: <span>500 - 4000 мм</span></p>
+                        <p>Вес: <span>1000 - 5300 кг</span></p>
+                    </div>
+                    <div class="price-tovar-box">
+                        <span class="price-tovar">4 490 253 ₽</span>
+                        <span class="old-price-tovar">4 890 253 ₽</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-tovar--link">Оставить заявку</a>
+            </div>
+            <div class="swiper-slide">
+                <div class="image-swiper-slide">
+                    <img src="images/tovar1.png" alt="">
+                </div>
+                <div class="content-swiper-slide">
+                    <p class="title-tovar-card">Горизонтальные обрабатывающие
+                        центры KMT KH
+                    </p>
+                    <div class="tovar-info">
+                        <p>Ø обработки: <span>300 - 800 мм</span></p>
+                        <p>Мощность: <span>5,5 - 30 кВт</span></p>
+                        <p>РМЦ: <span>500 - 4000 мм</span></p>
+                        <p>Вес: <span>1000 - 5300 кг</span></p>
+                    </div>
+                    <div class="price-tovar-box">
+                        <span class="price-tovar">4 490 253 ₽</span>
+                        <span class="old-price-tovar">4 890 253 ₽</span>
+                    </div>
+                </div>
+                <a href="#" class="btn-tovar--link">Оставить заявку</a>
+            </div>
             <div class="swiper-slide">Slide 5</div>
             <div class="swiper-slide">Slide 6</div>
             <div class="swiper-slide">Slide 7</div>
@@ -122,10 +196,10 @@
             <div class=""></div>
             <div class="swiper-control--btns">
                 <div class="swiper-button-prev">
-                    <img src="images/arrayPrev.png" alt="">
+                    <img src="images/arrowPrev.png" alt="">
                 </div>
                 <div class="swiper-button-next">
-                    <img src="images/arrayNext.png" alt="">
+                    <img src="images/arrowNext.png" alt="">
                 </div>
             </div>
         </div>

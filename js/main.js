@@ -136,18 +136,14 @@ jQuery.extend(jQuery.validator.messages, {
 });
 
 function formLoader(form) {
-    console.log('formLoader called for:', form);
     var $form = jQuery(form);
     var isInitialized = $form.hasClass('form-initialized');
     if (isInitialized) {
-        console.log('Form already initialized:', form);
         return;
     }
     $form.addClass('form-initialized');
     var controllerName = $form.data('controller') || 'Form';
-    console.log('Using controller:', controllerName);
     if (typeof window[controllerName] !== 'function') {
-        console.log('Controller not found, using default Form');
         new Form(form);
     } else {
         new window[controllerName](form);
@@ -155,38 +151,35 @@ function formLoader(form) {
 }
 
 function Form(form) {
-    console.log('Form constructor called for:', form);
     this.init(form);
 }
 
 Form.prototype.init = function (form) {
     this.$form = jQuery(form);
-    console.log('Form init, found wrappers:', this.$form.find('.input-wrapper').length);
+    // Инициализация текстовых полей
     this.$form.find('.input-wrapper').each(function () {
-        console.log('Initializing Input for wrapper:', this);
         new Input(this);
+    });
+    // Инициализация чекбоксов
+    this.$form.find('.checkbox-container').each(function () {
+        new Checkbox(this);
     });
     this.validater();
     this.mask();
 };
 
 Form.prototype.validater = function () {
-
     this.validator = this.$form.validate({
         focusInvalid: true,
         highlight: function (element) {
             var $element = jQuery(element);
-            var $row = $element.closest('.input-wrapper');
+            var $row = $element.closest('.input-wrapper, .checkbox-container');
             $row.addClass('error');
         }.bind(this),
         unhighlight: function (element) {
             var $element = jQuery(element);
-            var $row = $element.closest('.input-wrapper');
+            var $row = $element.closest('.input-wrapper, .checkbox-container');
             $row.removeClass('error');
-        }.bind(this),
-        invalidHandler: function (e, validator) {
-            var errors = validator.numberOfInvalids();
-            console.log(errors);
         }.bind(this),
         submitHandler: function (el, ev) {
             if (this.$form.valid()) {
@@ -195,16 +188,21 @@ Form.prototype.validater = function () {
                 this.validator.focusInvalid();
             }
         }.bind(this),
+        errorPlacement: function (error, element) {
+            if (element.is(':checkbox')) {
+                error.appendTo(element.closest('.checkbox-container'));
+            } else {
+                error.insertAfter(element);
+            }
+        }
     });
 };
 
 Form.prototype.mask = function () {
-    console.log('Applying mask to phone inputs');
     this.$form.find('input[type="tel"]').mask('+7 900 000 00 00');
 };
 
 Form.prototype.submitForm = function (ev) {
-    console.log('Submitting form via AJAX');
     var ajaxurl = '/wp-admin/admin-ajax.php';
     var formData = new FormData(this.$form[0]);
     jQuery.ajax({
@@ -228,10 +226,8 @@ Form.prototype.submitForm = function (ev) {
 };
 
 function Input(el) {
-    console.log('Input constructor called for:', el);
     this.$wrapper = jQuery(el);
     this.$input = this.$wrapper.find('input, textarea');
-    console.log('Input found:', this.$input.length, this.$input);
     if (this.$input.length === 0) {
         console.error('No input or textarea found in wrapper:', el);
         return;
@@ -243,12 +239,25 @@ function Input(el) {
 
 Input.prototype.checkEmpty = function () {
     let val = this.$input.val();
-    console.log('Field:', this.$input.attr('id'), 'Value:', val, 'Empty:', val.length === 0);
     this.$wrapper.toggleClass('empty', val.length === 0);
 };
 
+function Checkbox(el) {
+    this.$wrapper = jQuery(el);
+    this.$input = this.$wrapper.find('input[type="checkbox"]');
+    if (this.$input.length === 0) {
+        return;
+    }
+    this.$input.on('change', this.checkChecked.bind(this));
+    this.checkChecked();
+}
+
+Checkbox.prototype.checkChecked = function () {
+    let isChecked = this.$input.is(':checked');
+    this.$wrapper.toggleClass('checked', isChecked);
+};
+
 window.onload = function initPage() {
-    console.log('initPage called');
     jQuery('form[data-controller]').each(function () {
         console.log('Found form:', this);
         formLoader(this);
