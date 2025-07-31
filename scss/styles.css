@@ -61,6 +61,17 @@ body {
 .header__info #langBtn {
   background-color: #fff;
   border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.header__info #langBtn img {
+  margin-left: 5px;
+  transition: transform 0.3s ease;
+}
+.header__info #langBtn img.openLang {
+  margin-left: 5px;
+  transform: rotate(180deg);
 }
 .header__info #langList {
   display: none;
@@ -73,9 +84,10 @@ body {
 }
 .header__contacts {
   margin-left: 24px;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(50px, 1fr));
-  gap: 4px;
+  display: flex;
+}
+.header__contacts button {
+  margin-left: 8px;
 }
 .header__contacts .circle-btn {
   width: 48px;
@@ -713,12 +725,13 @@ body {
 }
 
 #modal-form {
+  position: relative;
   width: 100%;
+  max-height: 650px;
   background: #fff;
   border-radius: 16px;
-  height: 638px;
   box-sizing: border-box;
-  position: relative;
+  overflow-y: auto;
 }
 #modal-form .title-form {
   font-size: 28px;
@@ -733,6 +746,7 @@ body {
 }
 #modal-form form {
   width: 100%;
+  margin-top: 24px;
 }
 
 .input-wrapper {
@@ -802,6 +816,11 @@ textarea ~ .input__placeholder {
   color: #fe0000;
 }
 
+.input-wrapper.error {
+  color: #959595;
+  font-size: 16px;
+}
+
 .input:focus,
 .textarea:focus {
   border-color: #299F5A; /* Зеленый цвет */
@@ -820,8 +839,9 @@ textarea ~ .input__placeholder {
 }
 
 .checkbox-container {
-  display: block;
   position: relative;
+  display: block;
+  width: 100%;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -832,18 +852,9 @@ textarea ~ .input__placeholder {
   letter-spacing: -0.01em;
   color: #747474;
   margin-top: 10px;
+  z-index: 10;
 }
 
-@media (min-width: 768px) and (max-width: 1784px) {
-  .checkbox-container {
-    padding-left: 1.74vw;
-  }
-}
-@media (min-width: 320px) and (max-width: 767px) {
-  .checkbox-container {
-    padding-left: 8.53vw;
-  }
-}
 .checkbox-container input {
   cursor: pointer;
   position: absolute;
@@ -852,8 +863,19 @@ textarea ~ .input__placeholder {
   width: 0;
 }
 
+.checkbox-container .checkbox-label {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-left: 34px;
+  cursor: pointer;
+  flex-wrap: nowrap;
+  width: 100%;
+  line-height: 1.4;
+}
+
 .checkbox-container a {
-  color: #299F5A;
+  color: black;
   position: relative;
 }
 
@@ -862,7 +884,7 @@ textarea ~ .input__placeholder {
   position: absolute;
   width: 100%;
   height: 1px;
-  background: #299F5A;
+  background: black;
   bottom: -1px;
   left: 0;
 }
@@ -888,21 +910,30 @@ textarea ~ .input__placeholder {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  z-index: 0;
 }
 
-.checkbox-container input:checked ~ .checkmark {
-  background: #00ff00;
-  border-color: #00ff00;
+.checkbox-container input:checked ~ .checkbox-label .checkmark {
+  background: #299F5A;
+  border-color: #299F5A !important;
 }
 
 @media (min-width: 768px) and (max-width: 1784px) {
-  .checkmark {
+  .checkbox-container .checkbox-label {
+    padding-left: 1.74vw;
+  }
+  .checkmark,
+  .checkbox-container input {
     width: 1.3vw;
     height: 1.3vw;
   }
 }
 @media (min-width: 320px) and (max-width: 767px) {
-  .checkmark {
+  .checkbox-container .checkbox-label {
+    padding-left: 8.53vw;
+  }
+  .checkmark,
+  .checkbox-container input {
     width: 6.4vw;
     height: 6.4vw;
   }
@@ -913,12 +944,12 @@ textarea ~ .input__placeholder {
   height: 16px;
 }
 
-.checkbox-container input:checked ~ .checkmark svg {
+.checkbox-container input:checked ~ .checkbox-label .checkmark svg {
   display: block;
 }
 
-.checkbox-container.required:has(.agree-error) .checkmark {
-  border: 1px solid #fe0000;
+.checkbox-container.agree-error .checkmark {
+  border: 1px solid #fe0000 !important;
 }
 
 /*# sourceMappingURL=styles.css.map */

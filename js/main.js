@@ -1,10 +1,17 @@
 // Кнопка выбора языка
 
 const langBtn = document.getElementById('langBtn');
+const imgLang = document.getElementById('imgLang');
 const langList = document.getElementById('langList');
 
 langBtn.onclick = () => {
-    langList.style.display = langList.style.display === 'block' ? 'none' : 'block';
+    if (langList.style.display === 'block') {
+        langList.style.display = "none";
+        imgLang.classList.remove("openLang");
+    }else {
+        langList.style.display = "block";
+        imgLang.classList.add("openLang");
+    }
 };
 
 langList.querySelectorAll('li').forEach(li => {
@@ -256,6 +263,17 @@ Checkbox.prototype.checkChecked = function () {
     let isChecked = this.$input.is(':checked');
     this.$wrapper.toggleClass('checked', isChecked);
 };
+
+const form = document.querySelector('form');
+const checkbox = document.querySelector('#agreement');
+form.addEventListener('submit', (e) => {
+    if (!checkbox.checked) {
+        e.preventDefault();
+        checkbox.closest('.checkbox-container').classList.add('agree-error');
+    } else {
+        checkbox.closest('.checkbox-container').classList.remove('agree-error');
+    }
+});
 
 window.onload = function initPage() {
     jQuery('form[data-controller]').each(function () {
