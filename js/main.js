@@ -1,6 +1,7 @@
 // Кнопка выбора языка
 
 const langBtn = document.getElementById('langBtn');
+const langBox = document.getElementById('someLang');
 const imgLang = document.getElementById('imgLang');
 const langList = document.getElementById('langList');
 
@@ -16,8 +17,9 @@ langBtn.onclick = () => {
 
 langList.querySelectorAll('li').forEach(li => {
     li.onclick = () => {
-        langBtn.textContent = li.textContent + ' ▼';
+        langBox.textContent = li.textContent;
         langList.style.display = 'none';
+        imgLang.classList.remove("openLang");
     };
 });
 
