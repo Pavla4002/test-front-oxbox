@@ -166,6 +166,13 @@ if (modalOpenBtns) {
     });
 }
 
+const modalCloseBtns = document.getElementById('closeModalBtn');
+modalCloseBtns.addEventListener('click', () =>{
+    document.querySelector('.wrapper').classList.remove('overlay');
+    document.querySelector('.modal').classList.remove('open');
+});
+
+
 // Валидация и форма
 
 jQuery.extend(jQuery.validator.messages, {
