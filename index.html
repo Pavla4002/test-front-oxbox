@@ -2,17 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Title</title>
     <link rel="stylesheet" href="scss/swiper-bundle.min.css">
     <link rel="stylesheet" href="scss/libs.min.css">
     <link rel="stylesheet" href="scss/styles.css">
-
 </head>
 <body class="wrapper" >
 
 <header class="header">
-    <div class="header__navigation">
+    <div class="">
         <img src="images/logo.png" alt="Логотип Пять гармоний"  width="230" height="56">
+    </div>
+    <div class="header__navigation">
         <div class="">
             <a href="#">Для меня</a>
             <a href="#">Для бизнеса</a>
@@ -29,7 +32,7 @@
                     <li style="padding:5px; cursor:pointer;">FR</li>
                 </ul>
             </div>
-            <span id="phoneNumber">+7 (499) 553-02-90</span>
+            <a type="tel:+7(499)553-02-90" id="phoneNumber">+7 (499) 553-02-90</a>
         </div>
         <div class="header__contacts">
             <button class="circle-btn">
@@ -46,7 +49,67 @@
             </button>
         </div>
     </div>
+
+        <button class="header__burger">
+            <svg class="icon-burger" width="50" height="12" viewBox="0 0 50 12" fill="none"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0H50V2H0V0Z" fill="#2A2A2A"></path>
+                <path d="M0 10H50V12H0V10Z" fill="#2A2A2A"></path>
+            </svg>
+        </button>
+
 </header>
+
+<!--Меню-->
+<div class="mobile__menu">
+    <div class="mobile__menu-wrapper">
+        <div class="mobile__menu-top">
+            <span class="header__burger-close">
+                <svg width="20" height="20" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M2.29999 48.3L0 46L46 0L48.3 2.3L2.29999 48.3Z" fill="#171b1e"></path>
+                    <path d="M46 48.3L0 2.3L2.29999 0L48.3 46L46 48.3Z" fill="#171b1e"></path>
+                </svg>
+            </span>
+        </div>
+
+        <div class="mobile__menu-body">
+            <ul>
+                <li>
+                    <a href="#">Для меня</a>
+                </li>
+                <li>
+                    <a href="#">Для бизнеса</a>
+                </li>
+                <li>
+                    <a href="#">Кейсы</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="mobile__menu-bottom">
+
+            <a href="tel:+7(499)553-02-90" >
+                +7 (499) 553-02-90
+            </a>
+
+            <ul>
+                <li>
+                    <div class="social__list">
+                        <a class="circle-btn">
+                            <img src="images/telegram.png" alt="">
+                        </a>
+                        <a class="circle-btn">
+                            <img src="images/vk.png" alt="">
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--Меню-->
+
+
 <div class="modal">
     <div id="modal-form">
         <p class="title-form">Заказать программу</p>
@@ -305,6 +368,25 @@
                                 <a href="#">Перейти в каталог</a>
                             </div>
                         </div>
+                        <div class="allAccorions closeAccordion">
+                            <div class="accordion">
+                                <div class="accordion__intro">
+                                    <span class="id-service">02</span>
+                                    <span class="name-services">Тяжелая металлообработка</span>
+                                    <span class="count-tovar">72 товара</span>
+                                    <button class="accordion__intro-btn">
+                                        <svg class="arrow-icon" width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 0.996094L7 6.99612L13 0.996094" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="accordion__content">
+                                    <p>Деревообрабатывающие станки — это специализированное оборудование, предназначенное для обработки древесины и создания различных изделий, таких как мебель, двери, окна и другие элементы интерьера.</p>
+                                    <a href="#">Перейти в каталог</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <button class="all">Смотреть все</button>
                     </div>
 </section>
@@ -331,7 +413,7 @@
             <table>
                 <tr>
                     <td><span class="title-info">Шпиндель</span></td>
-                    <td><span class="title-info">Шпиндель</span></td>
+                    <td><span class="title-info"></span></td>
                 </tr>
                 <tr>
                     <td>Тип</td>

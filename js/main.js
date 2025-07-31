@@ -27,6 +27,37 @@ document.onclick = (e) => {
     }
 };
 
+function bodyLock() {
+    document.body.classList.add('body-locked');
+}
+
+// Функция разблокировки прокрутки
+function bodyUnLock() {
+    document.body.classList.remove('body-locked');
+}
+
+// Меню
+const menuOpen = document.querySelectorAll('.header__burger')
+if (menuOpen)
+
+    menuOpen.forEach(function (btn) {
+        btn.addEventListener('click', () => {
+            bodyLock()
+            document.querySelector('.wrapper').classList.add('overlay')
+            document.querySelector('.mobile__menu').classList.add('open')
+        })
+    })
+
+const menuClose = document.querySelector('.header__burger-close')
+if (menuClose)
+    menuClose.addEventListener('click', () => {
+        bodyUnLock()
+        document.querySelector('.wrapper').classList.remove('overlay')
+        document.querySelector('.mobile__menu').classList.remove('open')
+    })
+
+
+
 //  Слайдер
 const swiper = new Swiper('.swiper', {
     slidesPerView: 'auto',
@@ -41,7 +72,7 @@ const swiper = new Swiper('.swiper', {
     },
 });
 
-// Аккордион
+// Аккордеон
 const accordionsWrapper = document.querySelectorAll('.accordion-container')
 accordionsWrapper.forEach(el => {
 
@@ -84,6 +115,20 @@ accordionsWrapper.forEach(el => {
     if (accordions[0].closest('.services'))
         openAccordion(accordions[0])
 })
+
+const btnOpenAll = document.querySelector('.all');
+const allAccorions = document.querySelector(".allAccorions");
+
+btnOpenAll.addEventListener('click', (e) =>{
+    const open = allAccorions.classList.toggle('closeAccordion');
+
+    if (open) {
+        btnOpenAll.textContent ='Смотреть все';
+    }else {
+        btnOpenAll.textContent = 'Скрыть';
+    }
+});
+
 
 jQuery(document).ready(function () {
 
